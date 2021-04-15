@@ -1,40 +1,40 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Daftar Mahasiswa</title>
-  <link rel="stylesheet" href="<?= base_url() ?>assets/css/bootstrap.min.css">
-</head>
-
-<body>
-  <header class="container-fluid p-5">
-    <h1 class="font-weight-bold">Data Table User</h1>
-    <a href="<?= base_url() ?>Mahasiswa/tambah" class="btn btn-primary my-2">Tambah data</a>
-  </header>
-  <main class="container">
-    <table class="table">
-      <thead class="thead-light">
-        <tr>
-          <th>No</th>
-          <th>Username</th>
-          <th>Grup</th>
-        </tr>
-      </thead>
-      <tbody>
-        <?php $no = 1;
-        foreach ($user as $baris) : ?>
+<div class="container-fluid">
+  <div class="card shadow mb-4">
+    <div class="card-header py-3">
+      <h6 class="m-0 font-weight-bold text-primary">Data Tables User</h6>
+    </div>
+    <div class="card-body"><div class="table-responsive">
+      <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0"><!--untuk membuat tabel-->
+        <thead>
           <tr>
-            <td><?= $no++ ?></td>
-            <td><?= $baris->username ?></td>
-            <td><?= $baris->grup ?></td>
+            <th>No</th><!--membuat judul kolom-->
+            <th>Username</th>
+            <th>Grup</th>
           </tr>
-        <?php endforeach ?>
-      </tbody>
-    </table>
-  </main>
-</body>
+        </thead>
+        <tfoot>
+          <tr>
+            <th>No</th>
+            <th>Username</th>
+            <th>Grup</th>
+          </tr>
+        </tfoot>
+        <tbody>
+          <?php
+          $no = 1;
+          foreach ($user as $baris) { // untuk melakukan perulangan
+            ?>
+          <tr><td><?php echo $no++; ?></td> <!-- untuk memberikan nomer-->
+            <td><?php echo $baris->username; ?></td> <!-- untuk memnggil data dari field username-->
+            <td><?php echo $baris->grup; ?></td><!-- untuk memnggil data dari field grup-->
+          </tr>
+          <?php } ?>
+        </tbody>
+      </table>  
+      <a href="<?php echo base_url('Mahasiswa/tambah')?>" class="btn btn-success btn-icon-split"><!-- untuk berpindah ke tampilan tambah_mahasiswa-->
+      <span class="text">Tambah Data</span></a>   
+    </div>
+  </div>
+  </div>
+</div>
 
-</html>
