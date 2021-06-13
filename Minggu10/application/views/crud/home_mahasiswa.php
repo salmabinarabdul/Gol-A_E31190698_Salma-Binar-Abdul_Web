@@ -9,14 +9,22 @@
           <tr>
             <th>No</th><!--membuat judul kolom-->
             <th>Username</th>
+            <th>Nama</th>
             <th>Grup</th>
+            <?php if ($_SESSION['session_grup'] == 1) : ?>
+            <th>Opsi</th>
+            <?php endif ?>
           </tr>
         </thead>
         <tfoot>
           <tr>
             <th>No</th>
             <th>Username</th>
+            <th>Nama</th>
             <th>Grup</th>
+            <?php if ($_SESSION['session_grup'] == 1) : ?>
+            <th>Opsi</th>
+            <?php endif ?>
           </tr>
         </tfoot>
         <tbody>
@@ -25,8 +33,15 @@
           foreach ($user as $baris) { // untuk melakukan perulangan
             ?>
           <tr><td><?php echo $no++; ?></td> <!-- untuk memberikan nomer-->
-            <td><?php echo $baris->username; ?></td> <!-- untuk memnggil data dari field username-->
+            <td><?php echo $baris->username; ?></td>
+            <td><?php echo $baris->nama; ?></td> <!-- untuk memnggil data dari field nama-->
             <td><?php echo $baris->grup; ?></td><!-- untuk memnggil data dari field grup-->
+            <?php if ($_SESSION['session_grup'] == 1) : ?>
+             <td class="text-center">
+              <a class="btn btn-sm btn-outline-primary" href="<?= base_url()?>/mahasiswa/edit/<?= $baris->id ?>">Edit</a>
+              <a class="btn btn-sm btn-outline-primary" href="<?= base_url()?>/mahasiswa/hapus/<?= $baris->id ?>">Hapus</a>
+            </td>
+          <?php endif ?>
           </tr>
           <?php } ?>
         </tbody>
